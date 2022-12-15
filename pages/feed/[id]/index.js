@@ -57,7 +57,7 @@ const SinglePageView = () => {
                 );
               } else {
                 return (
-                  <div className="" style={{'padding-bottom': '1rem'}} key={item.id}>
+                  <div className="" style={{'padding-bottom': '1rem', 'word-break': 'break-all'}} key={item.id}>
                     {/* todo: linkify, paragraph style */}
                     {/* hover for relative date? */}
                     <span className="text-white my-3">{item.data}</span>
