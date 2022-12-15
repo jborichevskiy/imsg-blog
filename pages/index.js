@@ -12,7 +12,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          you've found <a href="https://imsg.blog">imsg.blog!</a>
+          you&#39;ve found <a href="https://imsg.blog">imsg.blog!</a>
         </h1>
 
         <p className={styles.description}>
