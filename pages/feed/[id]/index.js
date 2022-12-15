@@ -22,6 +22,9 @@ const SinglePageView = () => {
   const { feed } = useFeedRecent(id);
   console.log(feed);
 
+  const baseImageURL =
+    "https://matrix.matrix.notes.site/_matrix/media/r0/download/matrix.notes.site/";
+
   return (
     <div className={styles.container}>
       <Head>
@@ -33,17 +36,37 @@ const SinglePageView = () => {
       <main className={styles.main}>
         <h1 className={styles.title}></h1>
 
-        {format &&
-          format === "html" && (
-            <div>
-              <h1>Feed for {id}</h1>
-                {feed?.map((item) => {
-                  return <div key={item.id}>
-                    <span className="text-white">{item.data}</span>
+        {format && format === "html" && (
+          <div className="flex flex-col">
+            {feed?.map((item) => {
+              if (item.type == "m.image") {
+                return (
+                  <div key={item.id} style={{ 'padding-bottom': '1rem', position: "relative", width: "100%", paddingBottom: "100%" }}>
+                    <Image
+                      layout="fill"
+                      objectFit="contain"
+                      key={item.metadata.url}
+                      alt=""
+                      src={`${baseImageURL}${item.metadata.url.split("/")[3]}`}
+                    ></Image>
+                    {/* <a className="" key={item.id} >
+                      {baseImageURL}
+                      {item.metadata.url.split("/")[3]}
+                    </a> */}
                   </div>
-                })}
-            </div>
-          )}
+                );
+              } else {
+                return (
+                  <div className="" style={{'padding-bottom': '1rem'}} key={item.id}>
+                    {/* todo: linkify, paragraph style */}
+                    {/* hover for relative date? */}
+                    <span className="text-white my-3">{item.data}</span>
+                  </div>
+                );
+              }
+            })}
+          </div>
+        )}
 
         {format && format === "json" && (
           <pre>{JSON.stringify(feed, null, 2)}</pre>
