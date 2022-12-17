@@ -71,7 +71,7 @@ const SinglePageView = () => {
                       className=""
                       style={{
                         "padding-bottom": "1rem",
-                        "word-break": "break-all",
+                        "word-break": "break-word",
                       }}
                       key={item.id}
                     >
@@ -83,7 +83,6 @@ const SinglePageView = () => {
                       } */}
                     </div>
                   );
-
                 } else {
                   return (
                     <div
