@@ -25,6 +25,7 @@ const SinglePageView = () => {
   const baseImageURL =
     "https://matrix.matrix.notes.site/_matrix/media/r0/download/matrix.notes.site/";
 
+
   return (
     <div className={styles.container}>
       <Head>
@@ -41,13 +42,21 @@ const SinglePageView = () => {
             {feed?.map((item) => {
               if (item.type == "m.image") {
                 return (
-                  <div key={item.id} style={{ 'margin-bottom': '1rem', position: "relative", width: "100%", paddingBottom: "100%" }}>
+                  <div
+                    key={item.id}
+                    style={{
+                      "margin-bottom": "1rem",
+                      position: "relative",
+                      width: "80%",
+                      paddingBottom: "100%",
+                    }}
+                  >
                     <Image
                       layout="fill"
                       objectFit="contain"
-                      key={item.metadata.url}
+                      key={item.id}
                       alt=""
-                      src={`${baseImageURL}${item.metadata.url.split("/")[3]}`}
+                      src={`${baseImageURL}${item.fileName}`}
                     ></Image>
                     {/* <a className="" key={item.id} >
                       {baseImageURL}
@@ -56,13 +65,41 @@ const SinglePageView = () => {
                   </div>
                 );
               } else {
-                return (
-                  <div className="" style={{'padding-bottom': '1rem', 'word-break': 'break-all'}} key={item.id}>
-                    {/* todo: linkify, paragraph style */}
-                    {/* hover for relative date? */}
-                    <span className="text-white my-3">{item.data}</span>
-                  </div>
-                );
+                if (item.type == "m.file") {
+                  return (
+                    <div
+                      className=""
+                      style={{
+                        "padding-bottom": "1rem",
+                        "word-break": "break-all",
+                      }}
+                      key={item.id}
+                    >
+                      {/* todo: linkify, paragraph style */}
+                      {/* hover for relative date? */}
+                      <span className="text-white my-3">{item.data ? `${item.data} (transcribed)` : '(transcribing...)'}</span>
+                      {/* {
+                        item.fileName && <audio controls={true} src={`${baseImageURL}${item.fileName}`}></audio>
+                      } */}
+                    </div>
+                  );
+
+                } else {
+                  return (
+                    <div
+                      className=""
+                      style={{
+                        "padding-bottom": "1rem",
+                        "word-break": "break-all",
+                      }}
+                      key={item.id}
+                    >
+                      {/* todo: linkify, paragraph style */}
+                      {/* hover for relative date? */}
+                      <span className="text-white my-3">{item.data}</span>
+                    </div>
+                  );
+                }
               }
             })}
           </div>
