@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../../../styles/Home.module.css";
 import { useRouter } from "next/router";
+import Linkify from "react-linkify";
 
 import useFeedRecent from "../../../hooks/use-feed-recent";
 
@@ -95,7 +96,9 @@ const SinglePageView = () => {
                     >
                       {/* todo: linkify, paragraph style */}
                       {/* hover for relative date? */}
-                      <span className="text-white my-3">{item.data}</span>
+                      <span className="text-white my-3">
+                              <Linkify>{item.data}</Linkify>
+                      </span>
                     </div>
                   );
                 }
