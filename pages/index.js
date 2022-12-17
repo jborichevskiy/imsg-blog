@@ -12,11 +12,13 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          you&#39;ve found <a href="https://imsg.blog">imsg.blog!</a>
+          you&#39;ve found <a href="https://imsg-blog.vercel.app">msg.blog</a>
         </h1>
 
         <p className={styles.description}>
-          more details coming soon
+          a plcae to turn your messages into a blog
+          <br></br><br></br>
+          coming soon
         </p>
 
         {/* <p className={styles.description}>
