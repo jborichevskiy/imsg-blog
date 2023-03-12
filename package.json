@@ -9,13 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.11.6",
+    "@pinata/sdk": "^2.1.0",
     "@supabase/supabase-js": "^2.2.0",
+    "@types/node": "^18.11.18",
+    "discord.js": "^14.7.1",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
+    "heic-convert": "^1.2.4",
+    "localforage": "^1.10.0",
     "matrix-bot-sdk": "^0.6.2",
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-linkify": "^1.0.0-alpha"
+    "react-linkify": "^1.0.0-alpha",
+    "typescript": "^4.9.4",
+    "zustand": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.26"
   }
 }

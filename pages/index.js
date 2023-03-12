@@ -6,17 +6,17 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>imsg.blog</title>
+        <title>notes.site</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          you&#39;ve found <a href="https://imsg-blog.vercel.app">msg.blog</a>
+          you&#39;ve found <a href="https://imsg-blog.vercel.app">notes.site</a>
         </h1>
 
         <p className={styles.description}>
-          a plcae to turn your messages into a blog
+          turn your messages into a stream
           <br></br><br></br>
           coming soon
         </p>

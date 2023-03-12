@@ -10,7 +10,7 @@ const nextConfig = {
     //     // pathname: '/_matrix/media/r0/download/matrix.notes.site/**'
     //   }
     // ]
-    domains: ['matrix.matrix.notes.site']
+    domains: ['matrix.matrix.notes.site', 'notes-site.mypinata.cloud']
   }
 }
 
