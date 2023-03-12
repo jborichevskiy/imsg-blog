@@ -81,7 +81,7 @@ export async function getServerSideProps(context) {
   const id  = query.id;
   console.log({ id });
 
-  const url = `/api/data?author=${id}`;
+  const url = `https://imsg-blog.vercel.app/api/data?author=${id}`;
 
   const data = await fetch(url);
   const dataJSON = await data.json();
