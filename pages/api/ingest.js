@@ -37,6 +37,27 @@ const supabase = createClient(
 // }
 
 export default async function handler(req, res) {
+  const sendBlueAPI = `https://api.sendblue.co/api/send-message`;
+
+  const statusMessageResponse = await fetch(
+    sendBlueAPI,
+    {
+      method: "POST",
+      headers: {
+          "sb-api-key-id": "975c06ede9074f059290401fbeb836c8",
+          "sb-api-secret-key": "f09cea54b9b65344c867335695e03125",
+          "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        number: req.body.number,
+        content: `we got your picture, hang tight as we upload it and build your page`,
+        // send_style: "invisible",
+        // media_url: "https://picsum.photos/200/300.jpg",
+        // status_callback: "https://example.com/message-status/1234abcd",
+      }),
+    }
+  )
+
   const pinata = new pinataSDK({
     pinataApiKey: process.env.PINATA_API_KEY,
     pinataSecretApiKey: process.env.PINATA_SECRET_API_KEY,
@@ -103,12 +124,8 @@ export default async function handler(req, res) {
 
   console.log({ postData, postError });
 
-  // if first post, send back link
-
-  const url = `https://api.sendblue.co/api/send-message`;
-
   const apiResponse = await fetch(
-    url,
+    sendBlueAPI,
     {
       method: "POST",
       headers: {
@@ -118,7 +135,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         number: req.body.number,
-        content: `site updated; check it out: https://imsg-blog.vercel.app/feed/${authorData[0].id}`,
+        content: `site updated: https://imsg-blog.vercel.app/feed/${authorData[0].id}`,
         // send_style: "invisible",
         // media_url: "https://picsum.photos/200/300.jpg",
         // status_callback: "https://example.com/message-status/1234abcd",
