@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 const convert = require("heic-convert");
-import {promisify} from 'util';
+import { promisify } from "util";
 
 import fs from "fs";
 import { pipeline } from "stream/promises";
@@ -59,13 +59,10 @@ export default async function handler(req, res) {
   const tempFilename = `/tmp/sendblue-${req.body.message_handle}.jpeg`;
 
   // write to temp folder
-  const writeStream = fs.createWriteStream(
-    tempFilename,
-    {
-      autoClose: true,
-      flags: "w",
-    }
-  );
+  const writeStream = fs.createWriteStream(tempFilename, {
+    autoClose: true,
+    flags: "w",
+  });
 
   await pipeline(stream, writeStream);
 
@@ -107,6 +104,29 @@ export default async function handler(req, res) {
   console.log({ postData, postError });
 
   // if first post, send back link
+
+  const url = `https://api.sendblue.co/api/send-message`;
+
+  const apiResponse = await fetch(
+    url,
+    {
+      method: "POST",
+      headers: {
+          "sb-api-key-id": "975c06ede9074f059290401fbeb836c8",
+          "sb-api-secret-key": "f09cea54b9b65344c867335695e03125",
+          "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        number: req.body.number,
+        content: `site updated; check it out: https://imsg-blog.vercel.app/feed/${authorData[0].id}`,
+        // send_style: "invisible",
+        // media_url: "https://picsum.photos/200/300.jpg",
+        // status_callback: "https://example.com/message-status/1234abcd",
+      }),
+    }
+  )
+
+  console.log({ apiResponse });
 
   return res.status(200).json({});
 }

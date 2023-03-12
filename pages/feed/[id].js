@@ -3,7 +3,6 @@ import Image from "next/legacy/image";
 import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Linkify from "react-linkify";
-import { useIsMounted } from "../useIsMounted"
 
 const SinglePageView = (props) => {
   // const { feed } = props;
