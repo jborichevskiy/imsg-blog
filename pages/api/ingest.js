@@ -38,6 +38,13 @@ const supabase = createClient(
 
 export default async function handler(req, res) {
   const sendBlueAPI = `https://api.sendblue.co/api/send-message`;
+  console.log('incoming message from', req.body.number, req.body.media_url, req.body.content)
+
+  // if media_url is empty, send a message to the user
+  if (!req.body.media_url) {
+    console.log('no photo found, ignoring')
+    return res.status(200).json({});  
+  }
 
   const statusMessageResponse = await fetch(
     sendBlueAPI,
@@ -50,10 +57,10 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         number: req.body.number,
-        content: `we got your picture, hang tight as we upload it and build your page`,
+        content: `we got your picture, hang tight as we upload it and update your page`,
         // send_style: "invisible",
         // media_url: "https://picsum.photos/200/300.jpg",
-        // status_callback: "https://example.com/message-status/1234abcd",
+        status_callback: "https://65df27f0fb2d.ngrok.io/api/status",
       }),
     }
   )
